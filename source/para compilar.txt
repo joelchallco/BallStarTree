@@ -1,0 +1,6 @@
+para compilar 
+cd ../build
+make
+
+para ejecutar
+./cmake_test

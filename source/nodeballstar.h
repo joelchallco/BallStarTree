@@ -3,43 +3,56 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <Eigen/Dense>
 
+#define DIMENSIONES 14
 using namespace std;
 
-struct rid {
+class song{
 public:
-	int page;
-	int slot;
-
-	rid(int _page = -1,int _slot = -1) {
-		page = _page;
-		slot = _slot;
-		}
-	
-	void set_rid(int _page,int _slot) {
-		page = _page;
-		slot = _slot;
-		}
-
+	vector<string> name;
+	Eigen::MatrixXd data;
 };
-
 
 class NodeBallStar{
 public:
-    vector<float> data;
 	string name;
-    float center;
-    float radio;
+    // vector<double> data;
+	// dataR.resize(transformada.size(), load_data.cols()); // Redimensionar dataR para que tenga el mismo número de filas que transformada
+	Eigen::MatrixXd data;
+	// song data;
+    Eigen::MatrixXd center;
+    double radious;
+	bool isleaf;
 
     NodeBallStar* left;
     NodeBallStar* right;
 
-    NodeBallStar();
-    void getcenter();
-    void getradio();
+	NodeBallStar( Eigen::MatrixXd _data, Eigen::MatrixXd _center, double _radious, bool _isleaf ){
+		// this->name = _name;
+		this->data = _data;
+		this->center = _center;
+		this->radious = _radious;
+		left = nullptr;
+		right = nullptr;
+		isleaf = _isleaf;
+		// center.resize(1,DIMENSIONES);
+		// dataR.resize(transformada.size(), load_data.cols()); // Redimensionar dataR para que tenga el mismo número de filas que transformada
+		// data.resize(1,DIMENSIONES);
+	};
+
+	NodeBallStar( Eigen::MatrixXd _center, double _radious ){
+		// this->name = _name;
+		this->center = _center;
+		this->radious = _radious;
+		left = nullptr;
+		right = nullptr;
+		isleaf = false;
+		// dataR.resize(transformada.size(), load_data.cols()); // Redimensionar dataR para que tenga el mismo número de filas que transformada
+		// data.resize(1,DIMENSIONES);
+	};
 
 };
-
 
 
 
